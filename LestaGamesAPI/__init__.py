@@ -1,4 +1,5 @@
-# LestaGamesAPI
+"""
+### LestaGamesAPI
 
 Неофициальная Python библиотека, облегчающая работу с функционалом API Lesta Games. Скачивая данную библиотеку вы полностью соглашаетесь со всеми официальными документами Lesta Games об использовании продуктов Lesta Games. Автор библиотеки (Alexander Podstrechnyy) не несет ответственности за ваши действия, совершенные с помощью данного программного кода.
 
@@ -31,3 +32,10 @@
 
 Данный программный код не является продуктом Lesta Games и разработан согласно правилам Lesta Games DPP.
 
+"""
+
+__author__ = "Alexander Podstrechnyy"
+__email__ = "tankalxat34@gmail.com"
+__version__ = "0.1.0"
+__license__ = "MIT"
+__api__ = "Lesta Games"
