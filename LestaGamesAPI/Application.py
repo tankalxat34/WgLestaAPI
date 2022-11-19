@@ -13,9 +13,8 @@ class Query:
         """Класс для работы с полями запроса"""
         self.query = kwargs
 
-    @classmethod
-    def extend(self, key: str, value) -> bool:
-        self.query = {**self.query, key: value}
+    def extend(self, **kwargs) -> bool:
+        self.query = {**self.query, **kwargs}
 
     @property
     def string(self):

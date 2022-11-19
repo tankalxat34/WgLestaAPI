@@ -23,7 +23,8 @@ class Account:
         self.application_id = application_id
         self.app = Application.App(self.application_id)
 
-        self.class_methods = [method for method in dir(Account) if method.startswith('_') is False]
+        self.class_methods = [method for method in dir(
+            Account) if method.startswith('_') is False]
 
         self.method_urls = dict()
         for method in self.class_methods:
@@ -31,7 +32,7 @@ class Account:
                 server=API_SERVER,
                 api_name=API_NAME,
                 method_block=__class__.__name__.lower(),
-                method_name="list",
+                method_name=method.lower(),
                 get_params="{get_params}"
             )
 
@@ -52,4 +53,22 @@ class Account:
 
         request_url = self.method_urls["list"].format(get_params=Application.Query(
             application_id=self.application_id, search=search, **kwargs).string)
-        return Application.App().execute("GET", request_url)
+        return self.app.execute("GET", request_url)
+
+    def info(self, account_id: str, **kwargs) -> dict:
+        """
+        Метод возвращает информацию об игроке.
+
+        :param account_id       Идентификатор аккаунта игрока. Максимальное ограничение: 100.
+
+        Необязательные поля
+        :param fields       Поля ответа. Поля разделяются запятыми. Вложенные поля разделяются точками. Для исключения поля используется знак «-» перед названием поля. Если параметр не указан, возвращаются все поля. Максимальное ограничение: 100.
+        :param extra        Список дополнительных полей, которые будут включены в ответ. Допустимые значения: "private.grouped_contacts" и "statistics.rating".
+        :param language     Язык локализации.
+
+        Подробнее о методе: [lesta.ru](https://developers.lesta.ru/reference/all/wotb/account/info/)
+        """
+
+        request_url = self.method_urls["info"].format(get_params=Application.Query(
+            application_id=self.application_id, account_id=account_id, **kwargs).string)
+        return self.app.execute("GET", request_url)
