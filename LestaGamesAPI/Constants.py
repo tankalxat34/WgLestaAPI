@@ -31,3 +31,4 @@ class WOWS(object):
 
 
 PATTERN_URL = "https://{server}/{api_name}/{method_block}/{method_name}/?{get_params}"
+AUTH_URL = "https://api.tanki.su/wot/auth/login/"

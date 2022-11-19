@@ -16,7 +16,7 @@ READABLE = "Tanks Blitz"
 class Account:
     def __init__(self, application_id: str) -> None:
         """
-        Инициализация методов для работы с Аккаунтом игрока
+        Методы для работы с Аккаунтом игрока
 
         :param application_id   ID приложения Lesta Games, с которого будет производится запрос
         """
@@ -55,7 +55,7 @@ class Account:
             application_id=self.application_id, search=search, **kwargs).string)
         return self.app.execute("GET", request_url)
 
-    def info(self, account_id: str, **kwargs) -> dict:
+    def info(self, account_id: list, **kwargs) -> dict:
         """
         Метод возвращает информацию об игроке.
 
@@ -70,5 +70,40 @@ class Account:
         """
 
         request_url = self.method_urls["info"].format(get_params=Application.Query(
-            application_id=self.application_id, account_id=account_id, **kwargs).string)
+            application_id=self.application_id, account_id=",".join(list(map(str, account_id))), **kwargs).string)
+        return self.app.execute("GET", request_url)
+
+    def achievements(self, account_id: list, **kwargs) -> dict:
+        """
+        Метод возвращает информацию о достижениях игроков.
+
+        :param account_id       Идентификатор аккаунта игрока. Максимальное ограничение: 100.
+
+        Необязательные поля
+        :param fields       Поля ответа. Поля разделяются запятыми. Вложенные поля разделяются точками. Для исключения поля используется знак «-» перед названием поля. Если параметр не указан, возвращаются все поля. Максимальное ограничение: 100.
+        :param language     Язык локализации.
+
+        Подробнее о методе: [lesta.ru](https://developers.lesta.ru/reference/all/wotb/account/achievements/)
+        """
+
+        request_url = self.method_urls["achievements"].format(get_params=Application.Query(
+            application_id=self.application_id, account_id=",".join(list(map(str, account_id))), **kwargs).string)
+        return self.app.execute("GET", request_url)
+        
+    def tankstats(self, account_id: list, tank_id: str | int, **kwargs) -> dict:
+        """
+        Метод возвращает статистику игроков на данной технике.
+
+        :param account_id       Идентификатор аккаунта игрока. Максимальное ограничение: 100.
+        :param tank_id          Идентификатор техники игрока.
+
+        Необязательные поля
+        :param fields       Поля ответа. Поля разделяются запятыми. Вложенные поля разделяются точками. Для исключения поля используется знак «-» перед названием поля. Если параметр не указан, возвращаются все поля. Максимальное ограничение: 100.
+        :param language     Язык локализации.
+
+        Подробнее о методе: [lesta.ru](https://developers.lesta.ru/reference/all/wotb/account/tankstats/)
+        """
+
+        request_url = self.method_urls["tankstats"].format(get_params=Application.Query(
+            application_id=self.application_id, account_id=",".join(list(map(str, account_id))), tank_id=tank_id, **kwargs).string)
         return self.app.execute("GET", request_url)
