@@ -1,42 +1,46 @@
 """
-### WgLestaAPI
+# WgLestaAPI
 
-Неофициальная Python библиотека, облегчающая работу с функционалом API Lesta Games. Скачивая данную библиотеку вы полностью соглашаетесь со всеми официальными документами Lesta Games об использовании продуктов Lesta Games. Автор библиотеки (Alexander Podstrechnyy) не несет ответственности за ваши действия, совершенные с помощью данного программного кода.
+Unofficial Python library that facilitates working with API Lesta Games and API Wargaming.net functionality via Python. 
 
+By downloading this library you fully agree with all official documents Lesta Games and Wargaming.net about Lesta Games and Wargaming.net products. The author of the library (Alexander Podstrechny) is not responsible for your actions performed with the help of this program code.
 
-#### Функционал библиотеки
+## Installing the library
 
-Поддерживается следующий перечень игр: "Мир танков", "Мир кораблей" и "Tanks Blitz".
+Run the command below at the command line
 
-В библиотеке реализованы основные функции API Lesta Games и API Wargaming.net. Все запросы делаются через ваше приложение, которое вы заранее создали на сайте [Lesta Games](https://developers.lesta.ru/applications/) или на сайте [Wargaming.net](https://developers.wargaming.net/applications/). Некоторые функции перечислены ниже:
-- Получение информации об игроке, его техники и медалях.
-- Получение информации о клане.
-- Получение информации о технике, молулях техники.
-- и другие методы, не требующие авторизации пользователя.
+```
+pip install WgLestaAPI
+```
 
-Описания методов и полей взяты с официального сайта Lesta Games.
+## Library functionality
 
-#### Уведомление об авторских правах
+The library implements the basic functions of API Lesta Games and API Wargaming.net. All requests are made through your application, which you previously created on [Lesta Games](https://developers.lesta.ru/applications/) or on [Wargaming.net](https://developers.wargaming.net/applications/). Some features are listed below:
+- Getting information about the player, his equipment and medals.
+- Obtaining information about the clan.
+- Getting information about equipment, equipment mauls.
+- And other methods that do not require user authorization.
 
-- 2022 © Alexander Podstrechnyy. Контакты: 
-    - [GitHub](https://github.com/tankalxat34/WgLestaAPI)
+## Copyright Notice
+
+- 2022 © Alexander Podstrechnyy. 
     - [tankalxat34@gmail.com](mailto:tankalxat34@gmail.com?subject=lestagamesapi)
-    - [ВКонтакте](https://vk.com/tankalxat34)
+    - [VKontakte](https://vk.com/tankalxat34)
     - [Telegram](https://tankalxat34.t.me)
-- 2022 © Wargaming.net. Все права защищены.
-    - [Центр поддержки пользователей](http://support.wargaming.net/)
-    - [Официальный сайт](https://wargaming.net/)
-    - [Лицензионное соглашение](https://eu.wargaming.net/user_agreement/)
-    - [Политика конфиденциальности](https://eu.wargaming.net/privacy_policy/)
-- 2022 © Lesta Games. Все права защищены. 
-    - [Центр поддержки пользователей](https://lesta.ru/support/)
-    - [Официальный сайт](https://lesta.ru/)
-    - [Лицензионное соглашение](https://developers.lesta.ru/documentation/rules/agreement/)
-    - [Политика конфиденциальности](https://legal.lesta.ru/privacy-policy/)
+- 2022 © Wargaming.net. All rights reserved.
+    - [User Support Center](http://support.wargaming.net/)
+    - [Official website](https://wargaming.net/)
+    - [License Agreement](https://eu.wargaming.net/user_agreement/)
+    - [Privacy Policy](https://eu.wargaming.net/privacy_policy/)
+- 2022 © Lesta Games. All rights reserved. 
+    - [User Support Center](https://lesta.ru/support/)
+    - [Official website](https://lesta.ru/)
+    - [License Agreement](https://developers.lesta.ru/documentation/rules/agreement/)
+    - [Privacy Policy](https://legal.lesta.ru/privacy-policy/)
 
-Данный программный код не является продуктом Lesta Games и разработан согласно правилам Lesta Games DPP.
-Данный программный код не является продуктом Wargaming.net и разработан согласно правилам WG DPP.
+This program code is not a product of Lesta Games and was developed according to Lesta Games DPP rules.
 
+This program code is not a product of Wargaming.net and is developed according to WG DPP rules.
 #### Пример работы
 
     >>> from WgLestaAPI import Application

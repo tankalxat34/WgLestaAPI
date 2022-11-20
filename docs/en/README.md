@@ -22,10 +22,10 @@ The library implements the basic functions of **API Lesta Games** and **API Warg
 
 ## Copyright Notice
 
-- 2022 © Alexander Podstrechnyy: 
-    - [Telegram](https://tankalxat34.t.me)
+- 2022 © Alexander Podstrechnyy. 
     - [tankalxat34@gmail.com](mailto:tankalxat34@gmail.com?subject=lestagamesapi)
     - [VKontakte](https://vk.com/tankalxat34)
+    - [Telegram](https://tankalxat34.t.me)
 - 2022 © Wargaming.net. All rights reserved.
     - [User Support Center](http://support.wargaming.net/)
     - [Official website](https://wargaming.net/)
