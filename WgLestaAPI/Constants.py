@@ -40,7 +40,7 @@ class GAMENAMES(object):
         WOTC    = "wotx"    # World of Tanks Console
         WOWS    = "wows"    # World of Warships (Мир кораблей)
         WOWP    = "wowp"    # World of Warplanes
-        WG      = "wgn"     # Wagraming.net
+        WG      = "wgn"     # Wargaming.net
 
         # All short names
         ALL = (WOT, TANKI, WOTB, WOTC, WOWS, WOWP, WG)
@@ -53,7 +53,7 @@ class GAMENAMES(object):
         WOTC    = "worldoftanks"        # World of Tanks Console
         WOWS    = "worldofwarships"     # World of Warships (Мир кораблей)
         WOWP    = "worldofwarplanes"    # World of Warplanes
-        WG      = "worldoftanks"        # Wagraming.net
+        WG      = "worldoftanks"        # Wargaming.net
 
         # All long names
         ALL = (WOT, TANKI, WOTB, WOTC, WOWS, WOWP, WG)
