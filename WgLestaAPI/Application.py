@@ -1,5 +1,5 @@
 """
-Реализация общих методов для работы библиотеки
+Реализация общих методов для работы библиотеки WgLestaAPI
 """
 
 import urllib3
@@ -14,9 +14,11 @@ class Query:
 
     def __init__(self, **kwargs):
         """
-        Класс для работы с полями запроса. 
+        Класс для работы с полями запроса вида `?key1=value1&key2=3000`
+        
+        Если вы хотите создать query из параметров - просто вводите их один за другим, либо распакуйте словарь через оператор **.
 
-        Для того, чтобы распарсить query из url - передайте сюда один аргумент url
+        Если у вас есть ссылка, содержащая query, и вы хотите их распарсить - передайте сюда только один аргумент url, содержащию ссылку с query параметрами.
         """
         self.query = kwargs
 
@@ -145,16 +147,36 @@ class App:
 
 
 class Method:
-    def __init__(self, game: str, method: str, query: Query, type_request: Constants.TYPEREQUESTS, region: str = Constants.REGION) -> None:
-        """Выполнение методов в формате method_block.method_name"""
-        self.method = method
-        self.query = query
+    def __init__(self, api_method: str, game_shortname: Constants.GAMENAMES.SHORTNAMES, query: Query, region: Constants.REGION = Constants.REGION.RU, type_request: Constants.TYPEREQUESTS = Constants.TYPEREQUESTS.GET) -> None:
+        """
+        Класс для выполнения методов API в формате `method_block.method_name`. Для ввода параметров используйте константы из модуля `Constants` данной библиотеки.
 
-        self.method_block, self.method_name = self.method.split(".")
+        :param api_method       Выполняемый метод API. Синтаксис: `method_block.method_name`
+        :param game_shortname   Короткое название игры. Например: `wot`, `tanki`, `wotb`, `wows` и т.д.
+        :param query            Объект `Query` данной библиотеки, обязательно содержащий `application_id` вашего приложения. Параметры, передаваемые в URL вместе с запросом.
+        :param region           Регион, в котором находится игра. По умолчанию равен `ru`.
+        :param type_request     Тип запроса: `GET` или `POST`. По умолчанию равен `GET`.
+        
+        """
+        self.api_method = api_method
+        self.query = query
+        self.game_shortname = game_shortname
+        self.region = region
+        self.type_request = type_request
+
+        self.method_block, self.method_name = self.api_method.split(".")
 
         self.http = urllib3.PoolManager()
+        self.url_constructor = URLConstructor(game_shortname=self.game_shortname, region=self.region)
+        
+        self.url = self.url_constructor.get() + f"{self.method_block}/{self.method_name}/{self.query.full}"
 
-    def execute(self) -> dict:
-        # "https://{server}/{api_NAME}/{method_block}/{method_name}/?{get_params}"
-        # resonse = self.http.request(self.type_request, Constants.PATTERN_URL.format(server=))
-        pass
+    def execute(self) -> dict | urllib3.response.HTTPResponse:
+        """Выполняет указанный метод API. В случае успеха возвращает объект типа `dict`. В противном случае - объект `urllib3.response.HTTPResponse`"""
+        res = self.http.request(self.type_request, self.url)
+        try:
+            return json.loads(res.data)
+        except Exception:
+            return res
+
+        

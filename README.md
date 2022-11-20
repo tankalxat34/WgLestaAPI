@@ -30,3 +30,24 @@
 *Данный программный код не является продуктом Lesta Games и разработан согласно правилам Lesta Games DPP.*
 
 *Данный программный код не является продуктом Wargaming.net и разработан согласно правилам WG DPP.*
+
+# Пример работы
+
+```py
+from WgLestaAPI import Application
+
+# Создание Query с вашим application_id
+query = Application.Query(application_id=APP_ID)
+
+# Добавление необходимых параметров
+query.extend(search="tank", limit=5)
+
+# Создание метода `account.list` игры Tanks Blitz на RU-регионе с переданными параметрами
+m = Application.Method(api_method="account.list", game_shortname="wotb", query=query)
+
+# Выполнение метода
+mExecuted = m.execute()
+
+# Ваша обработка ответа от сервера
+print(mExecuted['data'][0]['account_id']) # 58114596
+```
