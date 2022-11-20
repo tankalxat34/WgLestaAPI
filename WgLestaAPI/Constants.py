@@ -10,6 +10,12 @@ https://api.tanki.su/wot/account/list/?application_id=2bdc993aef56a8cecd99394db7
 https://api.worldoftanks.eu/wot/account/list/
 """
 
+class APIHOLDERS(object):
+    """Владельцы API"""
+    WG = "wargaming.net"
+    LESTA = "lesta.ru"
+
+
 class TYPEREQUESTS(object):
     """Типы запросов, доступные для API"""
     GET = "GET"
@@ -26,7 +32,7 @@ class REGION(object):
     ASIA    = "asia"
     WGCB    = "com"
     
-    CIS = (RU, SU)                          # Только СНГ
+    CIS     = (RU, SU)                      # Только СНГ
     ALL_CIS = (RU, SU, EU, NA, ASIA, WGCB)  # Включая СНГ
     ALL     = (EU, NA, ASIA, WGCB)          # Не включая СНГ
 
@@ -58,6 +64,11 @@ class GAMENAMES(object):
 
         # Все длинные названия
         ALL = (WOT, TANKI, WOTB, WOTC, WOWS, WOWP, WG)
+
+
+URL_PATTERNS = {
+    "docs": "https://developers.{api_holder}/reference/all/{game_shortname}/{method_block}/{method_name}/"
+}
 
 
 # выборка необходимых параметров по короткому названию игры и региону
@@ -106,8 +117,4 @@ INFO = {
     }
 }
 
-
-
-
-PATTERN_URL = "https://{server}/{api_NAME}/{method_block}/{method_name}/?{get_params}"
 AUTH_URL = "https://{api_server}/{api_name}/auth/login/"

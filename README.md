@@ -50,4 +50,7 @@ mExecuted = m.execute()
 
 # Ваша обработка ответа от сервера
 print(mExecuted['data'][0]['account_id']) # 58114596
+
+# При желании можно перейти по ссылке на официальный сайт от владельца API с документацией
+print(m.docs) # https://developers.lesta.ru/reference/all/wotb/account/list/
 ```

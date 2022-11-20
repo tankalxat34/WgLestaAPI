@@ -172,11 +172,18 @@ class Method:
         self.url = self.url_constructor.get() + f"{self.method_block}/{self.method_name}/{self.query.full}"
 
     def execute(self) -> dict | urllib3.response.HTTPResponse:
-        """Выполняет указанный метод API. В случае успеха возвращает объект типа `dict`. В противном случае - объект `urllib3.response.HTTPResponse`"""
+        """Выполняет указанный метод API. В случае получения JSON возвращает объект типа `dict`. В противном случае - объект `urllib3.response.HTTPResponse`"""
         res = self.http.request(self.type_request, self.url)
         try:
             return json.loads(res.data)
         except Exception:
             return res
-
+    
+    @property
+    def docs(self) -> str:
+        """Получить ссылку на официальное описание метода на сайте Wagraming.net или Lesta Games"""
+        api_holder = Constants.APIHOLDERS.WG
+        if self.region in Constants.REGION.CIS:
+            api_holder = Constants.APIHOLDERS.LESTA
+        return Constants.URL_PATTERNS["docs"].format(api_holder=api_holder, game_shortname=self.game_shortname.replace(Constants.GAMENAMES.SHORTNAMES.TANKI, Constants.GAMENAMES.SHORTNAMES.WOT), method_block=self.method_block, method_name=self.method_name)
         
