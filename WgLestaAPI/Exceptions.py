@@ -1,5 +1,5 @@
 """
-Описание ошибок, возникающих при работе библиотеки WgLestaAPI
+Description of errors that occur during operation of the WgLestaAPI library
 """
 
 class RegionDoesNotExisting(Exception):

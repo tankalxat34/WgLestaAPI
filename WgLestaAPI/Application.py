@@ -1,5 +1,5 @@
 """
-Реализация общих методов для работы библиотеки WgLestaAPI
+Implementing common methods for running the WgLestaAPI library
 """
 
 import urllib3
@@ -10,54 +10,32 @@ from . import Exceptions
 
 
 class Query:
-    """Поля запроса в URL в виде ?key1=value1&key2=3000"""
+    """Query fields in the URL as ?key1=value1&key2=3000"""
 
     def __init__(self, **kwargs):
         """
-        Класс для работы с полями запроса вида `?key1=value1&key2=3000`
+        Query fields in the URL as `?key1=value1&key2=3000`
         
-        Если вы хотите создать query из параметров - просто вводите их один за другим, либо распакуйте словарь через оператор **.
+        If you want to create a query from parameters - just enter them one by one, or unpack the dictionary with the `**` operator.
 
-        Если у вас есть ссылка, содержащая query, и вы хотите их распарсить - передайте сюда только один аргумент url, содержащию ссылку с query параметрами.
-        """
+        If you have a link containing query parameters and you want to unpack them, pass only one url argument containing the link with query parameters here.        """
         self.query = kwargs
 
     def pop(self, *args):
-        """Удаляет поле/поля"""
+        """Delete field/fields"""
         for key in args:
             self.query.pop(key)
 
     def extend(self, **kwargs):
-        """Добавляет указанные ключи-значения в query. Если добавляется уже существующий ключ - его значение заменяется на переданное"""
+        """Adds the specified value keys to the query. If an already existing key is added, its value is replaced by the passed"""
         if not ("url" in self.query and len(self.query.keys()) == 1):
             self.query = {**self.query, **kwargs}
         else:
             self.query = self.parse()
             self.extend(**kwargs)
 
-    def parse_per_symbol(self) -> dict:
-        """Аналог self.parse(), однако данный метод обрабатывает строку query посимвольно, а не через split"""
-        try:
-            string_for_view = "?".join(self.query["url"].split("?")[1:])
-            locale_key = ""
-            locale_value = ""
-            flag = False
-            for s in string_for_view:
-                if s == "=":
-                    flag = True
-
-                if flag:
-                    locale_value += s
-                else:
-                    locale_key += s
-
-            return string_for_view
-
-        except KeyError:
-            raise KeyError("The \"url\" argument was not found!")
-
     def parse(self) -> dict:
-        """Получить из ссылки все query в виде словаря. Если не передан аргумент url - возвращается ошибка KeyError"""
+        """Get all queries as a dictionary from the link. If url argument is not passed - KeyError is returned"""
         try:
             first_scan = self.query["url"].split("&")
             first_scan[0] = first_scan[0].split("?")[1]
@@ -77,7 +55,7 @@ class Query:
 
     @property
     def string(self) -> str:
-        """Получить текущий query в виде строки"""
+        """Get the current query as a string"""
         if not ("url" in self.query and len(self.query.keys()) == 1):
             locale_string = str()
             for key in self.query.keys():
@@ -88,12 +66,12 @@ class Query:
 
     @property
     def full(self) -> str:
-        """Получить query в полной записи"""
+        """Get query in full entry"""
         return "?" + self.string
 
     @property
     def dictionary(self) -> dict:
-        """Получить текущий query в виде словаря"""
+        """Get the current query as a dictionary"""
         if not ("url" in self.query and len(self.query.keys()) == 1):
             return self.query
         else:
@@ -149,13 +127,13 @@ class App:
 class Method:
     def __init__(self, api_method: str, game_shortname: Constants.GAMENAMES.SHORTNAMES, query: Query, region: Constants.REGION = Constants.REGION.RU, type_request: Constants.TYPEREQUESTS = Constants.TYPEREQUESTS.GET) -> None:
         """
-        Класс для выполнения методов API в формате `method_block.method_name`. Для ввода параметров используйте константы из модуля `Constants` данной библиотеки.
+        Class for executing API methods in `method_block.method_name` format. Use constants from the `Constants` module of this library to enter parameters.
 
-        :param api_method       Выполняемый метод API. Синтаксис: `method_block.method_name`
-        :param game_shortname   Короткое название игры. Например: `wot`, `tanki`, `wotb`, `wows` и т.д.
-        :param query            Объект `Query` данной библиотеки, обязательно содержащий `application_id` вашего приложения. Параметры, передаваемые в URL вместе с запросом.
-        :param region           Регион, в котором находится игра. По умолчанию равен `ru`.
-        :param type_request     Тип запроса: `GET` или `POST`. По умолчанию равен `GET`.
+        :param api_method       Executable API method. Syntax: `method_block.method_name`
+        :param game_shortname   The short name of the game. For example: `wot`, `tanki`, `wotb`, `wows` etc.
+        :param query            The `Query` object of this library, necessarily containing `application_id` of your application. Parameters passed to the URL along with the query.
+        :param region           The region in which the game is located. The default is `ru`.
+        :param type_request     Query type: `GET` or `POST`. The default is `GET`.
         
         """
         self.api_method = api_method
@@ -175,7 +153,7 @@ class Method:
         self.url = self.url_constructor.get() + f"{self.method_block}/{self.method_name}/{self.query.full}"
 
     def execute(self) -> dict | urllib3.response.HTTPResponse:
-        """Выполняет указанный метод API. В случае получения JSON возвращает объект типа `dict`. В противном случае - объект `urllib3.response.HTTPResponse`"""
+        """Executes specified API method. In case of JSON it returns an object of `dict` type. Otherwise it returns `urllib3.response.HTTPResponse` object"""
         res = self.http.request(self.type_request, self.url.lower())
         try:
             return json.loads(res.data)
@@ -184,7 +162,7 @@ class Method:
     
     @property
     def docs(self) -> str:
-        """Ссылка на официальное описание метода на сайте Wagraming.net или Lesta Games"""
+        """Link to the official description of the method at Wagraming.net or Lesta Games"""
         api_holder = Constants.APIHOLDERS.WG
         if self.region in Constants.REGION.CIS:
             api_holder = Constants.APIHOLDERS.LESTA

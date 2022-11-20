@@ -1,22 +1,23 @@
 """
-Константы для работы библиотеки WgLestaAPI
+Constants for running the WgLestaAPI library
 """
 
 class APIHOLDERS(object):
-    """Владельцы API"""
+    """API Owners"""
     WG = "wargaming.net"
     LESTA = "lesta.ru"
 
 
 class TYPEREQUESTS(object):
-    """Типы запросов, доступные для API"""
+    """Request types available for API"""
     GET = "GET"
     POST = "POST"
 
     ALL = (GET, POST)
 
+
 class REGION(object):
-    """Перечень доступных для API регионов"""
+    """List of regions available for API"""
     RU      = "ru"
     SU      = "su"
     EU      = "eu"
@@ -30,9 +31,9 @@ class REGION(object):
 
 
 class GAMENAMES(object):
-    """Назавания игр Wargaming.net и Lesta Games для выполнения методов API"""
+    """Names of Wargaming.net and Lesta Games games to perform API methods"""
     class SHORTNAMES(object):
-        """Короткие названия"""
+        """Short names"""
         WOT     = "wot"     # World of Tanks
         TANKI   = "tanki"   # Мир танков
         WOTB    = "wotb"    # World of Tanks Blitz (Tanks Blitz)
@@ -41,11 +42,11 @@ class GAMENAMES(object):
         WOWP    = "wowp"    # World of Warplanes
         WG      = "wgn"     # Wagraming.net
 
-        # Все короткие названия
+        # All short names
         ALL = (WOT, TANKI, WOTB, WOTC, WOWS, WOWP, WG)
 
     class LONGNAMES(object):
-        """Длинные названия"""
+        """Long names"""
         WOT     = "worldoftanks"        # World of Tanks
         TANKI   = "tanki"               # Мир танков
         WOTB    = "wotblitz"            # World of Tanks Blitz (Tanks Blitz)
@@ -54,7 +55,7 @@ class GAMENAMES(object):
         WOWP    = "worldofwarplanes"    # World of Warplanes
         WG      = "worldoftanks"        # Wagraming.net
 
-        # Все длинные названия
+        # All long names
         ALL = (WOT, TANKI, WOTB, WOTC, WOWS, WOWP, WG)
 
 
@@ -64,7 +65,7 @@ URL_PATTERNS = {
 }
 
 
-# выборка необходимых параметров по короткому названию игры и региону
+# selecting the necessary parameters by short game name and region
 INFO = {
     # wot
     GAMENAMES.SHORTNAMES.WOT: {
@@ -106,6 +107,6 @@ INFO = {
     GAMENAMES.SHORTNAMES.WG: {
         "api": "api",
         "longname": GAMENAMES.LONGNAMES.WG,
-        "region_list": [REGION.EU, REGION.NA] # REGION.ASIA поддерживает не все методы
+        "region_list": [REGION.EU, REGION.NA] # REGION.ASIA does not support all methods
     }
 }
