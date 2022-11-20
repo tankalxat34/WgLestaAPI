@@ -1,13 +1,5 @@
 """
-Константы для работы библиотеки
-
-https://{server}/{api_NAME}/{method_block}/{method_name}/?{get_params}
-
-https://api.wotblitz.ru/wotb/account/list/?application_id=2bdc993aef56a8cecd99394db7a1ecca&search=tank&limit=5
-
-https://api.tanki.su/wot/account/list/?application_id=2bdc993aef56a8cecd99394db7a1ecca
-
-https://api.worldoftanks.eu/wot/account/list/
+Константы для работы библиотеки WgLestaAPI
 """
 
 class APIHOLDERS(object):
@@ -67,7 +59,8 @@ class GAMENAMES(object):
 
 
 URL_PATTERNS = {
-    "docs": "https://developers.{api_holder}/reference/all/{game_shortname}/{method_block}/{method_name}/"
+    "docs": "https://developers.{api_holder}/reference/all/{game_shortname}/{method_block}/{method_name}/",
+    "auth": "https://{api_server}/{api_name}/auth/login/"
 }
 
 
@@ -116,5 +109,3 @@ INFO = {
         "region_list": [REGION.EU, REGION.NA] # REGION.ASIA поддерживает не все методы
     }
 }
-
-AUTH_URL = "https://{api_server}/{api_name}/auth/login/"

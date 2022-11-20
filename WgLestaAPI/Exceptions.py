@@ -1,5 +1,5 @@
 """
-Описание ошибок, возникающих при работе библиотеки
+Описание ошибок, возникающих при работе библиотеки WgLestaAPI
 """
 
 class RegionDoesNotExisting(Exception):
@@ -15,3 +15,6 @@ class GameDoesNotAppearThisRegion(Exception):
     def __init__(self, value) -> None:
         super().__init__(f"This game does not appear in this region: \"{value}\"")
 
+class IncorrectMethodDeclaration(Exception):
+    def __init__(self, value) -> None:
+        super().__init__(f"Invalid declaration of this method: \"{value}\". You are using ({len(value.split('.'))}) parts of method instead of (2)")

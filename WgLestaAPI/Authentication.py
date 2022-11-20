@@ -1,4 +1,5 @@
 """
+Модуль не работает | WgLestaAPI
 Модуль для аутентификации пользователя и получения соответствующего временного access_token
 """
 
@@ -7,12 +8,6 @@ import json
 
 from . import Constants
 from . import Application
-
-NAME = "tanki"
-SERVER = "tanki.su"
-API_SERVER = "api.tanki.su"
-API_NAME = "wot"
-READABLE = "Мир танков"
 
 
 class UserAuth:

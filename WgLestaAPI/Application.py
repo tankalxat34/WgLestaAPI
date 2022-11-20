@@ -164,7 +164,10 @@ class Method:
         self.region = region
         self.type_request = type_request
 
-        self.method_block, self.method_name = self.api_method.split(".")
+        try:
+            self.method_block, self.method_name = self.api_method.split(".")
+        except Exception:
+            raise Exceptions.IncorrectMethodDeclaration(self.api_method)
 
         self.http = urllib3.PoolManager()
         self.url_constructor = URLConstructor(game_shortname=self.game_shortname, region=self.region)
@@ -173,7 +176,7 @@ class Method:
 
     def execute(self) -> dict | urllib3.response.HTTPResponse:
         """Выполняет указанный метод API. В случае получения JSON возвращает объект типа `dict`. В противном случае - объект `urllib3.response.HTTPResponse`"""
-        res = self.http.request(self.type_request, self.url)
+        res = self.http.request(self.type_request, self.url.lower())
         try:
             return json.loads(res.data)
         except Exception:
@@ -181,7 +184,7 @@ class Method:
     
     @property
     def docs(self) -> str:
-        """Получить ссылку на официальное описание метода на сайте Wagraming.net или Lesta Games"""
+        """Ссылка на официальное описание метода на сайте Wagraming.net или Lesta Games"""
         api_holder = Constants.APIHOLDERS.WG
         if self.region in Constants.REGION.CIS:
             api_holder = Constants.APIHOLDERS.LESTA
