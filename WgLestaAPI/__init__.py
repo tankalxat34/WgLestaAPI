@@ -27,11 +27,14 @@ The library implements the basic functions of API Lesta Games and API Wargaming.
     - [tankalxat34@gmail.com](mailto:tankalxat34@gmail.com?subject=lestagamesapi)
     - [VKontakte](https://vk.com/tankalxat34)
     - [Telegram](https://tankalxat34.t.me)
+    - [GitHub](https://github.com/tankalxat34/wglestaapi)
+
 - 2022 © Wargaming.net. All rights reserved.
     - [User Support Center](http://support.wargaming.net/)
     - [Official website](https://wargaming.net/)
     - [License Agreement](https://eu.wargaming.net/user_agreement/)
     - [Privacy Policy](https://eu.wargaming.net/privacy_policy/)
+    
 - 2022 © Lesta Games. All rights reserved. 
     - [User Support Center](https://lesta.ru/support/)
     - [Official website](https://lesta.ru/)
@@ -41,7 +44,9 @@ The library implements the basic functions of API Lesta Games and API Wargaming.
 This program code is not a product of Lesta Games and was developed according to Lesta Games DPP rules.
 
 This program code is not a product of Wargaming.net and is developed according to WG DPP rules.
-#### Пример работы
+
+
+#### Example of use
 
     >>> from WgLestaAPI import Application
     >>> APP_ID = "YOUR_APP_ID"
