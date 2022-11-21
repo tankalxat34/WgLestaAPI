@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "WgLestaAPI"
-version = "0.1.0"
+version = "0.1.1"
 description = "Unofficial Python library that implements the Wargaming.net API and Lesta Games API functionality"
 authors = ["Alexander Podstrechnyy <tankalxat34@gmail.com>"]
 repository = "https://github.com/tankalxat34/WgLestaAPI"
