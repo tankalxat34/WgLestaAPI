@@ -32,7 +32,7 @@ query = Application.Query(application_id=APP_ID)
 # Adding the necessary parameters
 query.extend(search="tank", limit=5)
 
-# Creating the method `account.list` of the game Tanks Blitz on the RU-region with the passed parameters
+# Creating the method `account.list` of the game World of Tanks Blitz on the EU-region with the passed parameters
 m = Application.Method("account.list", game_shortname="wotb", query=query, region="eu")
 
 # Executing the method
