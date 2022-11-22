@@ -4,16 +4,16 @@ Constants for running the WgLestaAPI library
 
 class APIHOLDERS(object):
     """API Owners"""
-    WG = "wargaming.net"
-    LESTA = "lesta.ru"
+    WG      = "wargaming.net"
+    LESTA   = "lesta.ru"
 
 
 class TYPEREQUESTS(object):
     """Request types available for API"""
-    GET = "GET"
-    POST = "POST"
+    GET     = "GET"
+    POST    = "POST"
 
-    ALL = (GET, POST)
+    ALL     = (GET, POST)
 
 
 class REGION(object):

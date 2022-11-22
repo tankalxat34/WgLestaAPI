@@ -154,3 +154,6 @@ cython_debug/
 test.*
 LestaGamesAPI/AUTH.py
 IssueRelease.bat
+response-*.json
+test*.py
+docs/en/DOCS.md

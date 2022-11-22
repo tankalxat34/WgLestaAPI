@@ -1,12 +1,12 @@
 # WgLestaAPI
 
-Unofficial Python library that facilitates working with **API Lesta Games** and **API Wargaming.net** functionality via **Python**. 
+Unofficial Python library that facilitates working with **<a href="https://developers.wargaming.net"><img src="https://developers.wargaming.net/static/1.12.2/assets/img/favicon.ico" width=15px> API Wargaming.net</a>** and **<a href="https://developers.lesta.ru"><img src="https://developers.lesta.ru/static/1.13.1_lst/assets/img/favicon.ico" width=15px> API Lesta Games</a>** functionality via **Python**.
 
 [![Downloads](https://static.pepy.tech/personalized-badge/wglestaapi?period=total&units=international_system&left_color=grey&right_color=blue&left_text=downloads)](https://pepy.tech/project/wglestaapi)
 [![Downloads](https://static.pepy.tech/personalized-badge/wglestaapi?period=month&units=international_system&left_color=grey&right_color=blue&left_text=downloads/month)](https://pepy.tech/project/wglestaapi)
 [![Downloads](https://static.pepy.tech/personalized-badge/wglestaapi?period=week&units=international_system&left_color=grey&right_color=blue&left_text=downloads/week)](https://pepy.tech/project/wglestaapi)
 [![Supported Versions](https://img.shields.io/pypi/pyversions/wglestaapi)](https://pypi.org/project/wglestaapi)
-[![Version](https://img.shields.io/pypi/v/wglestaapi)](https://pypi.org/project/wglestaapi)
+[![Version](https://img.shields.io/pypi/v/wglestaapi?color=success)](https://pypi.org/project/wglestaapi)
 [![](https://img.shields.io/pypi/format/wglestaapi)](https://pypi.org/project/wglestaapi)
 [![](https://img.shields.io/pypi/wheel/wglestaapi)](https://pypi.org/project/wglestaapi)
 [![GitHub Repo stars](https://img.shields.io/github/stars/tankalxat34/wglestaapi?style=social)](https://github.com/tankalxat34/wglestaapi)
@@ -33,16 +33,16 @@ query = Application.Query(application_id=APP_ID)
 query.extend(search="tank", limit=5)
 
 # Creating the method `account.list` of the game Tanks Blitz on the RU-region with the passed parameters
-m = Application.Method(api_method="account.list", game_shortname="wotb", query=query)
+m = Application.Method("account.list", game_shortname="wotb", query=query, region="eu")
 
 # Executing the method
 mExecuted = m.execute()
 
 # Your server response processing
-print(mExecuted['data'][0]['account_id']) # 58114596
+print(mExecuted["data"][0]["account_id"]) # 58114596
 
 # If you wish, you can follow a link to the official website of the API owner with documentation
-print(m.docs) # https://developers.lesta.ru/reference/all/wotb/account/list/
+print(m.docs) # https://developers.wargaming.net/reference/all/wotb/account/list/
 ```
 
 ## Library functionality
@@ -51,7 +51,7 @@ The library implements the basic functions of **API Lesta Games** and **API Warg
 - Getting information about the player, his equipment and medals.
 - Obtaining information about the clan.
 - Getting information about equipment, equipment mauls.
-- And other methods that do not require user authorization.
+- *And other methods.*
 
 ## Copyright Notice
 

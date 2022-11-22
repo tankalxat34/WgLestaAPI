@@ -18,10 +18,15 @@ class Query:
         
         If you want to create a query from parameters - just enter them one by one, or unpack the dictionary with the `**` operator.
 
-        If you have a link containing query parameters and you want to unpack them, pass only one url argument containing the link with query parameters here.        """
+        If you have a link containing query parameters and you want to unpack them, pass only one url argument containing the link with query parameters here.
+        """
         self.query = kwargs
 
-    def pop(self, *args):
+    def copy(self):
+        """Get an object's copy"""
+        return Query(**self.dictionary)
+
+    def pop(self, *args: str):
         """Delete field/fields"""
         for key in args:
             self.query.pop(key)
@@ -81,7 +86,7 @@ class Query:
 class URLConstructor:
     def __init__(self, game_shortname: Constants.GAMENAMES, region: Constants.REGION) -> None:
         """
-        Генирирует первую часть ссылки для запроса
+        Generates the first part of the link for the request
 
         https://{api}.{game_longname}.{region}/{game_shortname}/
 
@@ -108,20 +113,6 @@ class URLConstructor:
             region=self.region,
             game_shortname=self.game_shortname.replace(Constants.GAMENAMES.SHORTNAMES.TANKI, Constants.GAMENAMES.SHORTNAMES.WOT)
         )
-
-
-class App:
-    def __init__(self, application_id: str = ""):
-        self.application_id = application_id
-        self.http = urllib3.PoolManager()
-
-    def execute(self, method: str, full_url: str) -> dict:
-        """Выполняет запрос на сервер и возвращает ответ"""
-        res = self.http.request(method, full_url)
-        try:
-            return json.loads(res.data)
-        except Exception:
-            return res.data
 
 
 class Method:
