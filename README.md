@@ -1,6 +1,6 @@
 # WgLestaAPI
 
-Unofficial Python library that facilitates working with **<a href="https://developers.wargaming.net"><img src="https://developers.wargaming.net/static/1.12.2/assets/img/favicon.ico" width=15px> API Wargaming.net</a>** and **<a href="https://developers.lesta.ru"><img src="https://developers.lesta.ru/static/1.13.1_lst/assets/img/favicon.ico" width=15px> API Lesta Games</a>** functionality via **Python**.
+Unofficial Python library that facilitates working with **<a href="https://developers.wargaming.net"><img src="docs/icons/wg.ico" width=15px> API Wargaming.net</a>** and **<a href="https://developers.lesta.ru"><img src="docs/icons/lesta.ico" width=15px> API Lesta Games</a>** functionality via **Python**.
 
 [![Downloads](https://static.pepy.tech/personalized-badge/wglestaapi?period=total&units=international_system&left_color=grey&right_color=blue&left_text=downloads)](https://pepy.tech/project/wglestaapi)
 [![Downloads](https://static.pepy.tech/personalized-badge/wglestaapi?period=month&units=international_system&left_color=grey&right_color=blue&left_text=downloads/month)](https://pepy.tech/project/wglestaapi)
@@ -47,7 +47,7 @@ print(m.docs) # https://developers.wargaming.net/reference/all/wotb/account/list
 
 ## Library functionality
 
-The library implements the basic functions of **API Lesta Games** and **API Wargaming.net**. All requests are made through your application, which you previously created on [Lesta Games](https://developers.lesta.ru/applications/) or on [Wargaming.net](https://developers.wargaming.net/applications/). Some features are listed below:
+The library implements the basic functions of **API Lesta Games** and **API Wargaming.net**. All requests are made through your application, which you previously created on [<img src="docs/icons/lesta.ico" width=14px> Lesta Games](https://developers.lesta.ru/applications/) or on [<img src="docs/icons/wg.ico" width=14px> Wargaming.net](https://developers.wargaming.net/applications/). Some features are listed below:
 - Getting information about the player, his equipment and medals.
 - Obtaining information about the clan.
 - Getting information about equipment, equipment mauls.
