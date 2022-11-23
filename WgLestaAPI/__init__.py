@@ -60,6 +60,5 @@ This program code is not a product of Wargaming.net and is developed according t
 
 __author__ = "Alexander Podstrechnyy"
 __email__ = "tankalxat34@gmail.com"
-__version__ = "0.1.0"
 __license__ = "MIT"
 __apiholders__ = ["Wargaming.net <https://wargaming.net>", "Lesta Games <https://lesta.ru>"]

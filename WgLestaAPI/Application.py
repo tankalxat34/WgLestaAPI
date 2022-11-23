@@ -106,7 +106,7 @@ class URLConstructor:
             raise Exceptions.GameDoesNotAppearThisRegion(value=self.region)
 
     def get(self) -> str:
-        """Возвращает ссылку для доступа к API конкретной игры"""
+        """Returns a link to access the API of a particular game"""
         return self.pattern.format(
             api=Constants.INFO[self.game_shortname]["api"],
             game_longname=Constants.INFO[self.game_shortname]["longname"],
@@ -153,7 +153,7 @@ class Method:
     
     @property
     def docs(self) -> str:
-        """Link to the official description of the method at Wagraming.net or Lesta Games"""
+        """Link to the official description of the method at Wargaming.net or Lesta Games"""
         api_holder = Constants.APIHOLDERS.WG
         if self.region in Constants.REGION.CIS:
             api_holder = Constants.APIHOLDERS.LESTA
