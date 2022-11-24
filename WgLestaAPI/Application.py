@@ -143,7 +143,7 @@ class Method:
         
         self.url = self.url_constructor.get() + f"{self.method_block}/{self.method_name}/{self.query.full}"
 
-    def execute(self) -> dict | urllib3.response.HTTPResponse:
+    def execute(self) -> dict:
         """Executes specified API method. In case of JSON it returns an object of `dict` type. Otherwise it returns `urllib3.response.HTTPResponse` object"""
         res = self.http.request(self.type_request, self.url.lower())
         try:

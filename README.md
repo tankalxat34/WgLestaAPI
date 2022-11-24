@@ -38,7 +38,7 @@ m = Application.Method("account.list", game_shortname="wotb", query=query, regio
 # Executing the method
 mExecuted = m.execute()
 
-# Your server response processing
+# Your handing of server response
 print(mExecuted["data"][0]["account_id"]) # 58114596
 
 # If you wish, you can follow a link to the official website of the API owner with documentation
@@ -50,7 +50,7 @@ print(m.docs) # https://developers.wargaming.net/reference/all/wotb/account/list
 The library implements the basic functions of **API Lesta Games** and **API Wargaming.net**. All requests are made through your application, which you previously created on [<img src="docs/icons/lesta.ico" width=14px> Lesta Games](https://developers.lesta.ru/applications/) or on [<img src="docs/icons/wg.ico" width=14px> Wargaming.net](https://developers.wargaming.net/applications/). Some features are listed below:
 - Getting information about the player, his equipment and medals.
 - Obtaining information about the clan.
-- Getting information about equipment, equipment mauls.
+- Getting information about vehicles.
 - *And other methods.*
 
 ## Copyright Notice
