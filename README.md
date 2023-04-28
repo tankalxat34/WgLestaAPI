@@ -56,7 +56,7 @@ The library implements the basic functions of **API Lesta Games** and **API Warg
 ## Copyright Notice
 
 <div style="justify-content: center; text-align: center;">
-<a href="https://developers.wargaming.net/"><img src="https://developers.wargaming.net/static/1.12.2/assets/img/header/wg_logo.png" width="150px" style="margin: 20px;"></a>
+<a href="https://developers.wargaming.net/"><img src="https://developers.wargaming.net/static/1.13.0/assets/img/header/wg_logo.png" width="150px" style="margin: 20px;"></a>
 <a href="https://developers.lesta.ru/"><img src="https://developers.lesta.ru/static/1.13.1_lst/assets/img/header/lesta_dev_logo.png" width="178px" style="margin: 20px;"></a>
 </div>
 
