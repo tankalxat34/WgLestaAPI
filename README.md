@@ -11,7 +11,7 @@ Unofficial Python library that facilitates working with **<a href="https://devel
 [![](https://img.shields.io/pypi/wheel/wglestaapi)](https://pypi.org/project/wglestaapi)
 [![GitHub Repo stars](https://img.shields.io/github/stars/tankalxat34/wglestaapi?style=social)](https://github.com/tankalxat34/wglestaapi)
 
-By downloading this library you fully agree with all official documents **Lesta Games** and **Wargaming.net** about **Lesta Games** and **Wargaming.net** products. *The author of the library (Alexander Podstrechny) is not responsible for your actions performed with the help of this program code.*
+By downloading this library you fully agree with all official documents **Lesta Games** and **Wargaming.net** about **Lesta Games** and **Wargaming.net** products. *The author of the library ([Alexander Podstrechny](https://github.com/tankalxat34)) is not responsible for your actions performed with the help of this program code.*
 
 ## Installing the library
 
@@ -56,8 +56,13 @@ The library implements the basic functions of **API Lesta Games** and **API Warg
 ## Copyright Notice
 
 <div style="justify-content: center; text-align: center;">
+<<<<<<< Updated upstream
 <a href="https://developers.wargaming.net/"><img src="https://developers.wargaming.net/static/1.13.0/assets/img/header/wg_logo.png" width="150px" style="margin: 20px;"></a>
 <a href="https://developers.lesta.ru/"><img src="https://developers.lesta.ru/static/1.13.1_lst/assets/img/header/lesta_dev_logo.png" width="178px" style="margin: 20px;"></a>
+=======
+<a href="https://developers.wargaming.net/"><img src="docs/icons/wg_logo.png" width="150px" style="margin: 20px;"></a>
+<a href="https://developers.lesta.ru/"><img src="docs/icons/lesta_logo.png" width="178px" style="margin: 20px;"></a>
+>>>>>>> Stashed changes
 </div>
 
 - 2022 © Alexander Podstrechnyy. 

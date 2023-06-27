@@ -18,7 +18,7 @@ class Query:
         
         If you want to create a query from parameters - just enter them one by one, or unpack the dictionary with the `**` operator.
 
-        If you have a link containing query parameters and you want to unpack them, pass only one url argument containing the link with query parameters here.
+        If you have a string url containing query parameters and you want to unpack them, pass only one `url` argument containing the link with query parameters here.
         """
         self.query = kwargs
 
@@ -116,15 +116,15 @@ class URLConstructor:
 
 
 class Method:
-    def __init__(self, api_method: str, game_shortname: Constants.GAMENAMES.SHORTNAMES, query: Query, region: Constants.REGION = Constants.REGION.RU, type_request: Constants.TYPEREQUESTS = Constants.TYPEREQUESTS.GET) -> None:
+    def __init__(self, api_method: str, game_shortname: Constants.GAMENAMES.SHORTNAMES, query: Query, region: Constants.REGION = Constants.REGION.EU, type_request: Constants.TYPEREQUESTS = Constants.TYPEREQUESTS.GET) -> None:
         """
         Class for executing API methods in `method_block.method_name` format. Use constants from the `Constants` module of this library to enter parameters.
 
         :param api_method       Executable API method. Syntax: `method_block.method_name`
         :param game_shortname   The short name of the game. For example: `wot`, `tanki`, `wotb`, `wows` etc.
         :param query            The `Query` object of this library, necessarily containing `application_id` of your application. Parameters passed to the URL along with the query.
-        :param region           The region in which the game is located. The default is `ru`.
-        :param type_request     Query type: `GET` or `POST`. The default is `GET`.
+        :param region           Optional argument. The region in which the game is located. The default is `eu` if `game_shortname` is not equal `tanki`. If you want to get information from game that are extisting only on RU-region - you need to set up `region` argument as `ru`. Pay attention that Mir tankov (Мир танков) are existing only on SU region.
+        :param type_request     Optional argument. Query type: `GET` or `POST`. The default is `GET`.
         
         """
         self.api_method = api_method
@@ -132,6 +132,9 @@ class Method:
         self.game_shortname = game_shortname
         self.region = region
         self.type_request = type_request
+
+        if self.game_shortname == Constants.GAMENAMES.SHORTNAMES.TANKI:
+            self.region = Constants.REGION.SU
 
         try:
             self.method_block, self.method_name = self.api_method.split(".")
@@ -143,6 +146,15 @@ class Method:
         
         self.url = self.url_constructor.get() + f"{self.method_block}/{self.method_name}/{self.query.full}"
 
+    def __setitem__(self, key, value):
+        setattr(self, key, value)
+
+    def __getitem__(self, key):
+        return getattr(self, key)
+
+    def __str__(self) -> str:
+        return f"WgLestaAPI.Application.Method({self.execute()})"
+
     def execute(self) -> dict:
         """Executes specified API method. In case of JSON it returns an object of `dict` type. Otherwise it returns `urllib3.response.HTTPResponse` object"""
         res = self.http.request(self.type_request, self.url.lower())
@@ -150,6 +162,15 @@ class Method:
             return json.loads(res.data)
         except Exception:
             return res
+
+    @property
+    def data(self) -> dict:
+        """
+        Return data from response by key `data`
+
+        :return `dict`:
+        """
+        return self.execute()["data"]
     
     @property
     def docs(self) -> str:
