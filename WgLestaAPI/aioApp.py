@@ -43,7 +43,7 @@ This program code is not a product of Wargaming.net and is developed according t
 
 import aiohttp
 
-from . import Application, Constants, Exceptions
+from . import Constants, Exceptions
 
 
 def compile_query(d: dict) -> str:
