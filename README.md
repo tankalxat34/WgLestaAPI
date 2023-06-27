@@ -23,6 +23,27 @@ pip install WgLestaAPI
 
 ## Example of use
 
+### Async way
+
+`main.py` contains:
+```py
+from WgLestaAPI import aio
+import asyncio
+
+method = aio.Method("account.info", "wot", account_id=563982544, application_id="your_app_id")
+
+response = asyncio.run(method.execute())
+
+print(response)
+```
+
+`output` is:
+```json
+{"status": "ok", "meta": {"count": 1}, "data": {"563982544": {"client_language": "", "last_battle_time": 1569011404, "account_id": 563982544, "created_at": 1564320823, "updated_at": 1686648157, ... "tanking_factor": 0.0}, "frags": None}, "nickname": "tankalxat34", "logout_at": 1597741881}
+```
+
+### No-async way
+
 ```py
 from WgLestaAPI import Application
 
@@ -56,26 +77,21 @@ The library implements the basic functions of **API Lesta Games** and **API Warg
 ## Copyright Notice
 
 <div style="justify-content: center; text-align: center;">
-<<<<<<< Updated upstream
-<a href="https://developers.wargaming.net/"><img src="https://developers.wargaming.net/static/1.13.0/assets/img/header/wg_logo.png" width="150px" style="margin: 20px;"></a>
 <a href="https://developers.lesta.ru/"><img src="https://developers.lesta.ru/static/1.13.1_lst/assets/img/header/lesta_dev_logo.png" width="178px" style="margin: 20px;"></a>
-=======
 <a href="https://developers.wargaming.net/"><img src="docs/icons/wg_logo.png" width="150px" style="margin: 20px;"></a>
-<a href="https://developers.lesta.ru/"><img src="docs/icons/lesta_logo.png" width="178px" style="margin: 20px;"></a>
->>>>>>> Stashed changes
 </div>
 
-- 2022 © Alexander Podstrechnyy. 
+- 2023 © Alexander Podstrechnyy. 
     - [tankalxat34@gmail.com](mailto:tankalxat34@gmail.com?subject=lestagamesapi)
     - [VKontakte](https://vk.com/tankalxat34)
     - [Telegram](https://tankalxat34.t.me)
     - [GithHub](https://github.com/tankalxat34/wglestaapi)
-- 2022 © Wargaming.net. All rights reserved.
+- 2023 © Wargaming.net. All rights reserved.
     - [User Support Center](http://support.wargaming.net/)
     - [Official website](https://wargaming.net/)
     - [License Agreement](https://eu.wargaming.net/user_agreement/)
     - [Privacy Policy](https://eu.wargaming.net/privacy_policy/)
-- 2022 © Lesta Games. All rights reserved. 
+- 2023 © Lesta Games. All rights reserved. 
     - [User Support Center](https://lesta.ru/support/)
     - [Official website](https://lesta.ru/)
     - [License Agreement](https://developers.lesta.ru/documentation/rules/agreement/)

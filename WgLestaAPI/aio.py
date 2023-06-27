@@ -32,9 +32,9 @@ This program code is not a product of Wargaming.net and is developed according t
 
 #### Example of use
 
-    >>> from WgLestaAPI import aioApp
+    >>> from WgLestaAPI import aio
     >>> import asyncio
-    >>> m = aioApp.Method("account.info", "wot", account_id=563982544, application_id="your_app_id")
+    >>> m = aio.Method("account.info", "wot", account_id=563982544, application_id="your_app_id")
     >>> response = asyncio.run(m.execute())
     >>> print(response)
     {'status': 'ok', 'meta': {'count': 1}, 'data': {'563982544': {'client_language': '', ... 'frags': None}, 'nickname': 'tankalxat34', 'logout_at': 1597741881}}
