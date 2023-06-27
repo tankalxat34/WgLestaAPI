@@ -23,19 +23,19 @@ The library implements the basic functions of API Lesta Games and API Wargaming.
 
 ## Copyright Notice
 
-- 2022 © Alexander Podstrechnyy. 
+- 2023 © Alexander Podstrechnyy. 
     - [tankalxat34@gmail.com](mailto:tankalxat34@gmail.com?subject=lestagamesapi)
     - [VKontakte](https://vk.com/tankalxat34)
     - [Telegram](https://tankalxat34.t.me)
     - [GitHub](https://github.com/tankalxat34/wglestaapi)
 
-- 2022 © Wargaming.net. All rights reserved.
+- 2023 © Wargaming.net. All rights reserved.
     - [User Support Center](http://support.wargaming.net/)
     - [Official website](https://wargaming.net/)
     - [License Agreement](https://eu.wargaming.net/user_agreement/)
     - [Privacy Policy](https://eu.wargaming.net/privacy_policy/)
     
-- 2022 © Lesta Games. All rights reserved. 
+- 2023 © Lesta Games. All rights reserved. 
     - [User Support Center](https://lesta.ru/support/)
     - [Official website](https://lesta.ru/)
     - [License Agreement](https://developers.lesta.ru/documentation/rules/agreement/)
@@ -47,6 +47,18 @@ This program code is not a product of Wargaming.net and is developed according t
 
 
 #### Example of use
+
+##### Async way
+
+    >>> from WgLestaAPI import aioApp
+    >>> import asyncio
+    >>> m = aioApp.Method("account.info", "wot", account_id=563982544, application_id="your_app_id")
+    >>> response = asyncio.run(m.execute())
+    >>> print(response)
+    {'status': 'ok', 'meta': {'count': 1}, 'data': {'563982544': {'client_language': '', ... 'frags': None}, 'nickname': 'tankalxat34', 'logout_at': 1597741881}}
+
+
+##### No-async way
 
     >>> from WgLestaAPI import Application
     >>> APP_ID = "YOUR_APP_ID"
