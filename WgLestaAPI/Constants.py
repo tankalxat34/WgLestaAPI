@@ -2,6 +2,10 @@
 Constants for running the WgLestaAPI library
 """
 
+CIS_PREFIX = "cis-"
+"""The prefix is necessary to unify short game names for Lesta Games
+"""
+
 class APIHOLDERS(object):
     """API Owners"""
     WG      = "wargaming.net"
@@ -34,29 +38,35 @@ class GAMENAMES(object):
     """Names of Wargaming.net and Lesta Games games to perform API methods"""
     class SHORTNAMES(object):
         """Short names"""
-        WOT     = "wot"     # World of Tanks
-        TANKI   = "tanki"   # Мир танков
-        WOTB    = "wotb"    # World of Tanks Blitz (Tanks Blitz)
-        WOTC    = "wotx"    # World of Tanks Console
-        WOWS    = "wows"    # World of Warships (Мир кораблей)
-        WOWP    = "wowp"    # World of Warplanes
-        WG      = "wgn"     # Wargaming.net
+        WOT         = "wot"     # World of Tanks
+        WOTB        = "wotb"    # World of Tanks Blitz
+        WOTC        = "wotx"    # World of Tanks Console
+        WOWS        = "wows"    # World of Warships
+        WOWP        = "wowp"    # World of Warplanes
+        WG          = "wgn"     # Wargaming.net
+        # CIS
+        TANKI       = CIS_PREFIX + "wot"    # Мир танков
+        KORABLI     = CIS_PREFIX + "wows"   # Мир кораблей
+        TANKSBLITZ  = CIS_PREFIX + "wotb"   # Tanks Blitz
 
         # All short names
-        ALL = (WOT, TANKI, WOTB, WOTC, WOWS, WOWP, WG)
+        ALL = (WOT, WOTB, WOTC, WOWS, WOWP, WG, TANKI, KORABLI, TANKSBLITZ)
 
     class LONGNAMES(object):
         """Long names"""
-        WOT     = "worldoftanks"        # World of Tanks
-        TANKI   = "tanki"               # Мир танков
-        WOTB    = "wotblitz"            # World of Tanks Blitz (Tanks Blitz)
-        WOTC    = "worldoftanks"        # World of Tanks Console
-        WOWS    = "worldofwarships"     # World of Warships (Мир кораблей)
-        WOWP    = "worldofwarplanes"    # World of Warplanes
-        WG      = "worldoftanks"        # Wargaming.net
+        WOT         = "worldoftanks"        # World of Tanks
+        WOTB        = "wotblitz"            # World of Tanks Blitz
+        WOTC        = "worldoftanks"        # World of Tanks Console
+        WOWS        = "worldofwarships"     # World of Warships
+        WOWP        = "worldofwarplanes"    # World of Warplanes
+        WG          = "worldoftanks"        # Wargaming.net
+        # CIS
+        TANKI       = "tanki"               # Мир танков
+        KORABLI     = "korabli"             # Мир кораблей
+        TANKSBLITZ  = "tanksblitz"          # Tanks Blitz
 
         # All long names
-        ALL = (WOT, TANKI, WOTB, WOTC, WOWS, WOWP, WG)
+        ALL = (WOT, WOTB, WOTC, WOWS, WOWP, WG, TANKI, KORABLI, TANKSBLITZ)
 
 
 URL_PATTERNS = {
@@ -64,49 +74,54 @@ URL_PATTERNS = {
     "auth": "https://{api_server}/{api_name}/auth/login/"
 }
 
-
-# selecting the necessary parameters by short game name and region
-INFO = {
-    # wot
-    GAMENAMES.SHORTNAMES.WOT: {
-        "api": "api",
-        "longname": GAMENAMES.LONGNAMES.WOT,
-        "region_list": [REGION.EU, REGION.NA, REGION.ASIA]
-    },
-    # tanki
+SELECTOR = {
+    # CIS
     GAMENAMES.SHORTNAMES.TANKI: {
-        "api": "api",
-        "longname": GAMENAMES.LONGNAMES.TANKI,
-        "region_list": [REGION.SU]
+        "api_prefix": "api",
+        "game_longname": GAMENAMES.LONGNAMES.TANKI,
+        "region": [REGION.SU]
     },
-    # wotb
+    GAMENAMES.SHORTNAMES.TANKSBLITZ: {
+        "api_prefix": "papi",
+        "game_longname": GAMENAMES.LONGNAMES.TANKSBLITZ,
+        "region": [REGION.RU]
+    },
+    GAMENAMES.SHORTNAMES.KORABLI: {
+        "api_prefix": "api",
+        "game_longname": GAMENAMES.LONGNAMES.KORABLI,
+        "region": [REGION.SU]
+    },
+    
+    # ALL
+    GAMENAMES.SHORTNAMES.WOT: {
+        "api_prefix": "api",
+        "game_longname": GAMENAMES.LONGNAMES.WOT,
+        "region": [REGION.EU, REGION.NA, REGION.ASIA]
+    },
     GAMENAMES.SHORTNAMES.WOTB: {
-        "api": "api",
-        "longname": GAMENAMES.LONGNAMES.WOTB,
-        "region_list": [REGION.RU, REGION.EU, REGION.NA, REGION.ASIA]
+        "api_prefix": "api",
+        "game_longname": GAMENAMES.LONGNAMES.WOTB,
+        "region": [REGION.EU, REGION.NA, REGION.ASIA]
     },
-    # wotc
     GAMENAMES.SHORTNAMES.WOTC: {
-        "api": "api-console",
-        "longname": GAMENAMES.LONGNAMES.WOTC,
-        "region_list": [REGION.WGCB]
+        "api_prefix": "api-modernarmor",
+        "game_longname": GAMENAMES.LONGNAMES.WOTC,
+        "region": [REGION.WGCB]
     },
-    # wows
     GAMENAMES.SHORTNAMES.WOWS: {
-        "api": "api",
-        "longname": GAMENAMES.LONGNAMES.WOWS,
-        "region_list": [REGION.RU, REGION.EU, REGION.NA, REGION.ASIA]
+        "api_prefix": "api",
+        "game_longname": GAMENAMES.LONGNAMES.WOWS,
+        "region": [REGION.EU, REGION.NA, REGION.ASIA]
     },
-    # wowp
     GAMENAMES.SHORTNAMES.WOWP: {
-        "api": "api",
-        "longname": GAMENAMES.LONGNAMES.WOWP,
-        "region_list": [REGION.EU, REGION.NA]
+        "api_prefix": "api",
+        "game_longname": GAMENAMES.LONGNAMES.WOWP,
+        "region": [REGION.EU, REGION.NA]
     },
-    # wg
     GAMENAMES.SHORTNAMES.WG: {
-        "api": "api",
-        "longname": GAMENAMES.LONGNAMES.WG,
-        "region_list": [REGION.EU, REGION.NA] # REGION.ASIA does not support all methods
-    }
+        "api_prefix": "api",
+        "game_longname": GAMENAMES.LONGNAMES.WG,
+        "region": [REGION.EU, REGION.NA, REGION.ASIA]
+    },
+    
 }

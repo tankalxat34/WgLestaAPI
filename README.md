@@ -21,50 +21,136 @@ Run the command below at the command line
 pip install WgLestaAPI
 ```
 
-## Example of use
+## The main advantages
 
-### Async way
+* The presence of synchronous and asynchronous methods of working with the API;
+* The ability to use any available methods of the official API through this single library;
+* The ability to run a single `*.py` program in several different regions;
+* Built-in constants to designate all games and regions for **<a href="https://developers.wargaming.net"><img src="docs/icons/wg.ico" width=15px> API Wargaming.net</a>** and **<a href="https://developers.lesta.ru"><img src="docs/icons/lesta.ico" width=15px> API Lesta Games</a>**;
+* One App class with all the necessary library methods.
 
-`main.py` contains:
-```py
-from WgLestaAPI import aio
+## Quickstart
+
+### 1. Get an `application_id`
+1. Choice your API provider: **<a href="https://developers.wargaming.net"><img src="docs/icons/wg.ico" width=15px> API Wargaming.net</a>** or **<a href="https://developers.lesta.ru"><img src="docs/icons/lesta.ico" width=15px> API Lesta Games</a>**;
+2. Log in to the official API provider service;
+3. Create a new application by clicking on the button **Add application** or use the existing;
+4. Copy ID field from webpage;
+
+
+<img src="docs/picture1.png" width=900px>
+
+### 2. Write a synchron variant of the "Hello world" example
+
+```python
+from WgLestaAPI.Application import App
+from WgLestaAPI.Constants import REGION, GAMENAMES
+import json
+
+wgApp = App("YOUR_APPLICATION_ID", REGION.EU)
+
+resp = wgApp.execute("account.info", GAMENAMES.SHORTNAMES.WOT, account_id=563982544)
+print(json.dumps(resp, indent=2))
+
+```
+
+In the terminal you will see:
+
+```json
+{
+  "status": "ok",
+  "meta": {
+    "count": 1
+  },
+  "data": {
+    "563982544": {
+      "client_language": "",
+      "last_battle_time": 1569011404,
+      "account_id": 563982544,
+      "created_at": 1564320823,
+      "updated_at": 1715246332,
+      "private": null,
+      "global_rating": 1828,
+      "clan_id": null,
+      "statistics": {
+        // ...
+      },
+      "nickname": "tankalxat34",
+      "logout_at": 1597741881
+    }
+  }
+}
+```
+
+
+### 3. Write an async variant of the "Hello world" example
+
+```python
+from WgLestaAPI.Application import App
+from WgLestaAPI.Constants import REGION, GAMENAMES
+import json
 import asyncio
 
-method = aio.Method("account.info", "wot", account_id=563982544, application_id="your_app_id")
+wgApp = App("YOUR_APPLICATION_ID", REGION.EU)
 
-response = asyncio.run(method.execute())
+async def getMyAccount(myId: int):
+    return await wgApp.asyncExecute("account.info", GAMENAMES.SHORTNAMES.WOT, account_id=myId)
 
-print(response)
+resp = asyncio.run(getMyAccount(myId=563982544))
+print(json.dumps(resp, indent=2))
 ```
 
-`output` is:
+In the terminal you will see:
+
 ```json
-{"status": "ok", "meta": {"count": 1}, "data": {"563982544": {"client_language": "", "last_battle_time": 1569011404, "account_id": 563982544, "created_at": 1564320823, "updated_at": 1686648157, ... "tanking_factor": 0.0}, "frags": None}, "nickname": "tankalxat34", "logout_at": 1597741881}
+{
+  "status": "ok",
+  "meta": {
+    "count": 1
+  },
+  "data": {
+    "563982544": {
+      "client_language": "",
+      "last_battle_time": 1569011404,
+      "account_id": 563982544,
+      "created_at": 1564320823,
+      "updated_at": 1715246332,
+      "private": null,
+      "global_rating": 1828,
+      "clan_id": null,
+      "statistics": {
+        // ...
+      },
+      "nickname": "tankalxat34",
+      "logout_at": 1597741881
+    }
+  }
+}
 ```
 
-### No-async way
+### 4. Get URL to login, logout and prolongate `access_token` actions into your application
 
-```py
-from WgLestaAPI import Application
+You can use the library to generate API links for user authorization in your application. This will allow your application to get an access_token, which can be passed as a parameter inside a request to any available API method
 
-# Creating a Query with your application_id
-query = Application.Query(application_id=APP_ID)
+```python
+from WgLestaAPI.Application import App
+from WgLestaAPI.Constants import REGION, GAMENAMES
 
-# Adding the necessary parameters
-query.extend(search="tank", limit=5)
+wgApp = App("YOUR_APPLICATION_ID", REGION.EU)
 
-# Creating the method `account.list` of the game World of Tanks Blitz on the EU-region with the passed parameters
-m = Application.Method("account.list", game_shortname="wotb", query=query, region="eu")
-
-# Executing the method
-mExecuted = m.execute()
-
-# Your handing of server response
-print(mExecuted["data"][0]["account_id"]) # 58114596
-
-# If you wish, you can follow a link to the official website of the API owner with documentation
-print(m.docs) # https://developers.wargaming.net/reference/all/wotb/account/list/
+print(wgApp.login(redirect_uri="https://example.com/")) # url to your hosted web-application
+print(wgApp.logout())
+print(wgApp.prolongate())
 ```
+
+In the terminal you will see:
+
+```
+https://api.worldoftanks.eu/wot/auth/login/?application_id=YOUR_APPLICATION_ID&redirect_uri=https://example.com/
+https://api.worldoftanks.eu/wot/auth/logout/?application_id=YOUR_APPLICATION_ID
+https://api.worldoftanks.eu/wot/auth/prolongate/?application_id=YOUR_APPLICATION_ID
+```
+
 
 ## Library functionality
 
@@ -76,22 +162,19 @@ The library implements the basic functions of **API Lesta Games** and **API Warg
 
 ## Copyright Notice
 
-<div style="justify-content: center; text-align: center;">
-<a href="https://developers.lesta.ru/"><img src="https://developers.lesta.ru/static/1.13.1_lst/assets/img/header/lesta_dev_logo.png" width="178px" style="margin: 20px;"></a>
-<a href="https://developers.wargaming.net/"><img src="docs/icons/wg_logo.png" width="150px" style="margin: 20px;"></a>
-</div>
+<a href="https://developers.lesta.ru/"><img src="docs/icons/lesta_logo.png" width="178px" style="margin: 20px;"></a> <a href="https://developers.wargaming.net/"><img src="docs/icons/wg_logo.png" width="150px" style="margin: 20px;"></a>
 
-- 2023 © Alexander Podstrechnyy. 
+- 2024 © Alexander Podstrechnyy. 
     - [tankalxat34@gmail.com](mailto:tankalxat34@gmail.com?subject=lestagamesapi)
     - [VKontakte](https://vk.com/tankalxat34)
     - [Telegram](https://tankalxat34.t.me)
     - [GithHub](https://github.com/tankalxat34/wglestaapi)
-- 2023 © Wargaming.net. All rights reserved.
+- 2024 © Wargaming.net. All rights reserved.
     - [User Support Center](http://support.wargaming.net/)
     - [Official website](https://wargaming.net/)
     - [License Agreement](https://eu.wargaming.net/user_agreement/)
     - [Privacy Policy](https://eu.wargaming.net/privacy_policy/)
-- 2023 © Lesta Games. All rights reserved. 
+- 2024 © Lesta Games. All rights reserved. 
     - [User Support Center](https://lesta.ru/support/)
     - [Official website](https://lesta.ru/)
     - [License Agreement](https://developers.lesta.ru/documentation/rules/agreement/)
