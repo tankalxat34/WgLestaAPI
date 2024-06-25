@@ -21,6 +21,7 @@ Run the command below at the command line
 pip install WgLestaAPI
 ```
 
+
 ## The main advantages
 
 * The presence of synchronous and asynchronous methods of working with the API;
