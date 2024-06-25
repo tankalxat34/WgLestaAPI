@@ -157,3 +157,4 @@ IssueRelease.bat
 response-*.json
 test*.py
 docs/en/DOCS.md
+/.vscode
