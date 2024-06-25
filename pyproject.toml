@@ -7,6 +7,9 @@ repository = "https://github.com/tankalxat34/WgLestaAPI"
 license = "MIT"
 readme = "README.md"
 
+[tool.poetry.urls]
+homepage = "https://github.com/tankalxat34/WgLestaAPI"
+
 [tool.poetry.dependencies]
 python = "^3.6"
 
