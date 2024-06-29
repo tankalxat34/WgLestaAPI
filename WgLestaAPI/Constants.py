@@ -39,15 +39,33 @@ class GAMENAMES(object):
     class SHORTNAMES(object):
         """Short names"""
         WOT         = "wot"     # World of Tanks
+        """World of Tanks
+        """
         WOTB        = "wotb"    # World of Tanks Blitz
+        """World of Tanks Blitz
+        """
         WOTC        = "wotx"    # World of Tanks Console
+        """World of Tanks Console
+        """
         WOWS        = "wows"    # World of Warships
+        """World of Warships
+        """
         WOWP        = "wowp"    # World of Warplanes
+        """World of Warplanes
+        """
         WG          = "wgn"     # Wargaming.net
+        """Wargaming.net
+        """
         # CIS
         TANKI       = CIS_PREFIX + "wot"    # Мир танков
+        """Мир танков ("Mir tankov", only RU region)
+        """
         KORABLI     = CIS_PREFIX + "wows"   # Мир кораблей
+        """Мир кораблей ("Mir korabley", only RU region)
+        """
         TANKSBLITZ  = CIS_PREFIX + "wotb"   # Tanks Blitz
+        """Tanks Blitz (only RU region)
+        """
 
         # All short names
         ALL = (WOT, WOTB, WOTC, WOWS, WOWP, WG, TANKI, KORABLI, TANKSBLITZ)
@@ -55,15 +73,33 @@ class GAMENAMES(object):
     class LONGNAMES(object):
         """Long names"""
         WOT         = "worldoftanks"        # World of Tanks
+        """World of Tanks
+        """
         WOTB        = "wotblitz"            # World of Tanks Blitz
+        """World of Tanks Blitz
+        """
         WOTC        = "worldoftanks"        # World of Tanks Console
+        """World of Tanks Console
+        """
         WOWS        = "worldofwarships"     # World of Warships
+        """World of Warships
+        """
         WOWP        = "worldofwarplanes"    # World of Warplanes
+        """World of Warplanes
+        """
         WG          = "worldoftanks"        # Wargaming.net
+        """Wargaming.net
+        """
         # CIS
         TANKI       = "tanki"               # Мир танков
+        """Мир танков ("Mir tankov", only RU region)
+        """
         KORABLI     = "korabli"             # Мир кораблей
+        """Мир кораблей ("Mir korabley", only RU region)
+        """
         TANKSBLITZ  = "tanksblitz"          # Tanks Blitz
+        """Tanks Blitz (only RU region)
+        """
 
         # All long names
         ALL = (WOT, WOTB, WOTC, WOWS, WOWP, WG, TANKI, KORABLI, TANKSBLITZ)
