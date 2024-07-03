@@ -58,13 +58,19 @@ class GAMENAMES(object):
         """
         # CIS
         TANKI       = CIS_PREFIX + "wot"    # Мир танков
-        """Мир танков ("Mir tankov", only RU region)
+        """Мир танков
+        
+        (only `SU` region)
         """
         KORABLI     = CIS_PREFIX + "wows"   # Мир кораблей
-        """Мир кораблей ("Mir korabley", only RU region)
+        """Мир кораблей
+        
+        (only `SU` region)
         """
         TANKSBLITZ  = CIS_PREFIX + "wotb"   # Tanks Blitz
-        """Tanks Blitz (only RU region)
+        """Tanks Blitz
+        
+        (only `RU` region)
         """
 
         # All short names
@@ -92,23 +98,32 @@ class GAMENAMES(object):
         """
         # CIS
         TANKI       = "tanki"               # Мир танков
-        """Мир танков ("Mir tankov", only RU region)
+        """Мир танков
+        
+        (only `SU` region)
         """
         KORABLI     = "korabli"             # Мир кораблей
-        """Мир кораблей ("Mir korabley", only RU region)
+        """Мир кораблей
+        
+        (only `SU` region)
         """
         TANKSBLITZ  = "tanksblitz"          # Tanks Blitz
-        """Tanks Blitz (only RU region)
+        """Tanks Blitz
+        
+        (only `RU` region)
         """
 
         # All long names
         ALL = (WOT, WOTB, WOTC, WOWS, WOWP, WG, TANKI, KORABLI, TANKSBLITZ)
 
-
-URL_PATTERNS = {
-    "docs": "https://developers.{api_holder}/reference/all/{game_shortname}/{method_block}/{method_name}/",
-    "auth": "https://{api_server}/{api_name}/auth/login/"
-}
+class METHODEXECUTION(object):
+    ASYNC = "async"
+    """Asynchronous API request
+    """
+    SYNC = "sync"
+    """Synchronous API request
+    """
+    
 
 SELECTOR = {
     # CIS

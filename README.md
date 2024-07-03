@@ -13,6 +13,10 @@ Unofficial Python library that facilitates working with **<a href="https://devel
 
 By downloading this library you fully agree with all official documents **Lesta Games** and **Wargaming.net** about **Lesta Games** and **Wargaming.net** products. *The author of the library ([Alexander Podstrechny](https://github.com/tankalxat34)) is not responsible for your actions performed with the help of this program code.*
 
+> [!NOTE]
+> If you like this project please add it to favorite :star: \
+> Thanks for your feedback!
+
 ## Installing the library
 
 Run the command below at the command line
@@ -65,17 +69,7 @@ In the terminal you will see:
   },
   "data": {
     "563982544": {
-      "client_language": "",
-      "last_battle_time": 1569011404,
-      "account_id": 563982544,
-      "created_at": 1564320823,
-      "updated_at": 1715246332,
-      "private": null,
-      "global_rating": 1828,
-      "clan_id": null,
-      "statistics": {
-        // ...
-      },
+      // ...
       "nickname": "tankalxat34",
       "logout_at": 1597741881
     }
@@ -111,17 +105,7 @@ In the terminal you will see:
   },
   "data": {
     "563982544": {
-      "client_language": "",
-      "last_battle_time": 1569011404,
-      "account_id": 563982544,
-      "created_at": 1564320823,
-      "updated_at": 1715246332,
-      "private": null,
-      "global_rating": 1828,
-      "clan_id": null,
-      "statistics": {
-        // ...
-      },
+      // ...
       "nickname": "tankalxat34",
       "logout_at": 1597741881
     }
@@ -152,6 +136,22 @@ https://api.worldoftanks.eu/wot/auth/logout/?application_id=YOUR_APPLICATION_ID
 https://api.worldoftanks.eu/wot/auth/prolongate/?application_id=YOUR_APPLICATION_ID
 ```
 
+### 5. Saving frequently called methods
+
+If you use any method very often, you can save its function to a variable. Then you can call the saved method as many times as you want without purposefully passing parameters inside each call.
+
+```python
+from WgLestaAPI.Application import App
+from WgLestaAPI.Constants import REGION, GAMENAMES
+
+wgApp = App("YOUR_APPLICATION_ID", REGION.EU)
+
+# method saving
+getMyAccount = wgApp.createMethod("account.info", GAMENAMES.SHORTNAMES.WOT, account_id=563982544)
+
+for i in range(3):
+    print(i, getMyAccount())
+```
 
 ## Library functionality
 
