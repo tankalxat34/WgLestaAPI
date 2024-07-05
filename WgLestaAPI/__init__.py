@@ -32,6 +32,8 @@ The library implements the basic functions of API Lesta Games and API Wargaming.
 
 ## Quickstart
 
+More examples you can find on the [GitHub](https://github.com/tankalxat34/WgLestaAPI)
+
 ### 1. Get an `application_id`
 1. Choice your API provider;
 2. Log in to the official API provider service;
@@ -45,43 +47,17 @@ from WgLestaAPI.Application import App
 from WgLestaAPI.Constants import REGION, GAMENAMES
 import json
 
-wgApp = App("YOUR_APPLICATION_ID", REGION.EU)
+# init your app
+wgApp = App(
+    application_id = "YOUR_APPLICATION_ID",
+    region = REGION.EU,
+    game_shortname = GAMENAMES.SHORTNAMES.WOT
+)
 
-resp = wgApp.execute("account.info", GAMENAMES.SHORTNAMES.WOT, account_id=563982544)
-print(json.dumps(resp, indent=2))
-
-```
-
-### 3. Write an async variant of the "Hello world" example
-
-```python
-from WgLestaAPI.Application import App
-from WgLestaAPI.Constants import REGION, GAMENAMES
-import json
-import asyncio
-
-wgApp = App("YOUR_APPLICATION_ID", REGION.EU)
-
-async def getMyAccount(myId: int):
-    return await wgApp.asyncExecute("account.info", GAMENAMES.SHORTNAMES.WOT, account_id=myId)
-
-resp = asyncio.run(getMyAccount(myId=563982544))
-print(json.dumps(resp, indent=2))
-```
-
-### 4. Get URL to login, logout and prolongate `access_token` actions into your application
-
-You can use the library to generate API links for user authorization in your application. This will allow your application to get an access_token, which can be passed as a parameter inside a request to any available API method
-
-```python
-from WgLestaAPI.Application import App
-from WgLestaAPI.Constants import REGION, GAMENAMES
-
-wgApp = App("YOUR_APPLICATION_ID", REGION.EU)
-
-print(wgApp.login(redirect_uri="https://example.com/")) # url to your hosted web-application
-print(wgApp.logout())
-print(wgApp.prolongate())
+# make a query
+data = wgApp.account.info(account_id=563982544)
+# processing the response
+print(json.dumps(data, indent=2))
 ```
 
 ## Copyright Notice
