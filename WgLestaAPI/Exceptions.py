@@ -6,7 +6,7 @@ from . import Constants as c
 
 class RegionDoesNotExisting(Exception):
     def __init__(self, value, game_shortname: str) -> None:
-        super().__init__(f"This region \"{value}\" does not existing in API services for the game \"{c.GAMENAMES.LONGNAMES.__dict__[game_shortname.replace(c.CIS_PREFIX, "").upper()]}\". Available regions for this game is: {', '.join(c.SELECTOR[game_shortname]["region"])}")
+        super().__init__(f"This region \"{value}\" does not existing in API services for the game \"{c.GAMENAMES.LONGNAMES.__dict__[game_shortname.replace(c.CIS_PREFIX, '').upper()]}\". Available regions for this game is: {', '.join(c.SELECTOR[game_shortname]['region'])}")
 
 class ShortnameIsNotDefined(Exception):
     def __init__(self, value) -> None:
