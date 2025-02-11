@@ -185,17 +185,17 @@ The library implements the basic functions of **API Lesta Games** and **API Warg
 
 <a href="https://developers.lesta.ru/"><img src="https://raw.githubusercontent.com/tankalxat34/WgLestaAPI/main/docs/icons/lesta_logo.png" width="178px" style="margin: 20px;"></a> <a href="https://developers.wargaming.net/"><img src="https://raw.githubusercontent.com/tankalxat34/WgLestaAPI/main/docs/icons/wg_logo.png" width="150px" style="margin: 20px;"></a>
 
-- 2024 © Alexander Podstrechnyy. 
+- 2025 © Alexander Podstrechnyy. 
     - [tankalxat34@gmail.com](mailto:tankalxat34@gmail.com?subject=lestagamesapi)
     - [VKontakte](https://vk.com/tankalxat34)
     - [Telegram](https://tankalxat34.t.me)
     - [GithHub](https://github.com/tankalxat34/wglestaapi)
-- 2024 © Wargaming.net. All rights reserved.
+- 2025 © Wargaming.net. All rights reserved.
     - [User Support Center](http://support.wargaming.net/)
     - [Official website](https://wargaming.net/)
     - [License Agreement](https://eu.wargaming.net/user_agreement/)
     - [Privacy Policy](https://eu.wargaming.net/privacy_policy/)
-- 2024 © Lesta Games. All rights reserved. 
+- 2025 © Lesta Games. All rights reserved. 
     - [User Support Center](https://lesta.ru/support/)
     - [Official website](https://lesta.ru/)
     - [License Agreement](https://developers.lesta.ru/documentation/rules/agreement/)
